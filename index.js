@@ -32,10 +32,10 @@ app.post("/convidados", async (req, res) => {
 
 app.put("/convidados/:id", async (req, res) => {
   try {
-    const { nome, celular } = req.body;
+    const { nome, celular, confirmado } = req.body;
     const convidadoAtualizado = await Guest.findByIdAndUpdate(
       req.params.id,
-      { nome, celular },
+      { nome, celular, confirmado },
       { new: true }
     );
 
