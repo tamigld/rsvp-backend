@@ -68,4 +68,18 @@ app.get("/convidados", async (req, res) => {
   res.json(convidados);
 });
 
+app.get("/convidados/:id", async (req, res) => {
+  try {
+    const convidado = await Guest.findById(req.params.id);
+
+    if (!convidado) {
+      return res.status(404).json({ error: "Convidado não encontrado" });
+    }
+
+    res.json(convidado);
+  } catch (error) {
+    res.status(400).json({ error: "ID inválido ou erro na busca" });
+  }
+});
+
 app.listen(3000, () => console.log("Servidor rodando na porta 3000"));
